@@ -1,5 +1,15 @@
-steps:
-  - name: ZAP Scan
-    uses: zaproxy/action-baseline@v0.14.0
-    with:
-      target: 'https://hackeru.pl/'
+on: [push]
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan the webapplication
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: 'https://hackeru.pl/'
